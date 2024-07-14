@@ -7,6 +7,10 @@ export class SlotsController {
 
   @Get()
   async getSlots() {
-    return this.slotsService.getMinutes("2024-04-13T09:00","2024-04-13T18:00");
+    const date = '2024-04-13' // query
+    const start = '09:00' // config
+    const end = '18:00' // config
+
+    return this.slotsService.getMinutes(date,start,end);
   }
 }
