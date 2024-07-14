@@ -1,0 +1,29 @@
+version: "3.8"
+networks:
+  local-dev:
+services:
+  nestjs:
+    container_name: "nestjs"
+    networks:
+      - local-dev
+    build:
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app/
+    depends_on:
+      - postgres
+    env_file:
+      - ./.env
+    ports:
+      - "8100:8100"
+
+  postgres:
+    container_name: postgres
+    networks:
+      - local-dev
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+
